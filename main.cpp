@@ -19,6 +19,6 @@ int main(){
  
     // print the adjacency list representation of the above graph
     graph1.printGraph();
-    cout << graph1.hay_camino(1, 3) << endl;
+    cout << graph1.hay_arco(1, 3) << endl;
     return 0;
 }

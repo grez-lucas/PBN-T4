@@ -47,7 +47,7 @@ void Graph::addEdge(int src, int dest)
   AdjacencyLists[dest].node = newNode;
 }
 
-bool Graph::hay_camino(int a, int b){
+bool Graph::hay_arco(int a, int b){
     Node *aNode = AdjacencyLists[a].node;
     while(aNode){
       if(aNode->dest == b) return true;
