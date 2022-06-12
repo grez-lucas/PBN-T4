@@ -14,5 +14,6 @@ public:
     Node* newAdjListNode(int);
     int add_nodo();
     void addEdge(int, int);
+    bool hay_camino(int, int);
     void printGraph();
 };
