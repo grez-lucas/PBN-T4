@@ -56,10 +56,20 @@ bool Graph::hay_arco(int a, int b){
     return false;
 }
 
+bool Graph::hay_camino(int a, int b){
+  if (hay_arco(a, b))
+    return true;
+  for (int v = 0; v < this->nodeNum; ++v)
+  {
+    if (hay_arco(a, v) && hay_arco(b, v))
+      return true;
+  }
+  return false;
+}
+
 void Graph::printGraph()
 {
-  int v;
-  for (v = 0; v < this->nodeNum; ++v)
+  for (int v = 0; v < this->nodeNum; ++v)
   {
     Node *printNode = AdjacencyLists[v].node;
     cout << "Adjacency list of node " << v << "\n node ";

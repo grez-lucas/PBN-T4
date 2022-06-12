@@ -15,5 +15,6 @@ public:
     int add_nodo();
     void addEdge(int, int);
     bool hay_arco(int, int);
+    bool hay_camino(int, int);
     void printGraph();
 };
