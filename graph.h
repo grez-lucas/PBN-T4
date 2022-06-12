@@ -12,6 +12,7 @@ public:
     Graph();
     Graph(int);
     Node* newAdjListNode(int);
+    int add_nodo();
     void addEdge(int, int);
     void printGraph();
 };

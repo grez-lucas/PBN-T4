@@ -1,6 +1,13 @@
 #include "graph.h"
 #include <iostream>
 
+Graph::Graph()
+{
+  this->nodeNum = 0;
+  AdjacencyLists = new AdjacencyList[0];
+  AdjacencyLists[0].node = NULL;
+}
+
 Graph::Graph(int size)
 {
   this->nodeNum = size;
@@ -8,12 +15,26 @@ Graph::Graph(int size)
   for (int i = 0; i < size; ++i)
     AdjacencyLists[i].node = NULL;
 }
+
 Node *Graph::newAdjListNode(int dest)
 {
   Node *newNode = new Node;
   newNode->dest = dest;
   newNode->next = NULL;
   return newNode;
+}
+
+int Graph::add_nodo(){  //Gotta play with realloc memory 
+  this->nodeNum ++;
+  int id = this->nodeNum;
+  
+  Node *newNode = new Node;
+  newNode->next = NULL;
+
+  AdjacencyLists[id].node = NULL;
+
+
+  return id;
 }
 
 void Graph::addEdge(int src, int dest)
@@ -25,17 +46,19 @@ void Graph::addEdge(int src, int dest)
   newNode->next = AdjacencyLists[dest].node;
   AdjacencyLists[dest].node = newNode;
 }
+
 void Graph::printGraph()
 {
   int v;
   for (v = 0; v < this->nodeNum; ++v)
   {
-    Node *pCrawl = AdjacencyLists[v].node;
-    cout << "\n Adjacency list of node " << v << "\n head ";
-    while (pCrawl)
+    Node *printNode = AdjacencyLists[v].node;
+    cout << "Adjacency list of node " << v << "\n node ";
+    // Print each node's destination, until there's no more nodes left in ajdList to iterate
+    while (printNode)
     {
-      cout << "-> " << pCrawl->dest;
-      pCrawl = pCrawl->next;
+      cout << "-> " << printNode->dest;
+      printNode = printNode->next;
     }
     cout << endl;
   }
