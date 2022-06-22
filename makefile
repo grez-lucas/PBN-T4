@@ -1,14 +1,25 @@
 CC=g++
-flags=-std=c++11 -Wall -Wextra -Wundef -Werror -Wuninitialized -Winit-self
-exe=graphs
-lib=libgrafo.dll
+flags=
+exe=grafo
+lib=_grafo.pyd
+
+
+swigroute=C:\Users\lucas\Downloads\swigwin-4.0.2\swigwin-4.0.2
+pythonroute=C:\Users\lucas\Anaconda3\pkgs\python-3.7.1-h8c8aaf0_6
+
+# if problems try removing \s or changing "\" to "/"
+$(lib): grafo_wrap.cxx graph.o adj_list.o node.o
+	$(CC) -fPIC -c grafo_wrap.cxx -o grafo_wrap.o -I$(pythonroute)/include
+	$(CC) -shared grafo_wrap.o node.o adj_list.o graph.o -o _grafo.pyd -L$(pythonroute) -lpython37
+
+grafo_wrap.cxx: grafo.i graph.h adj_list.h node.h
+	$(swigroute)/swig -python -c++ grafo.i
+
+
 
 $(exe): main.o $(lib)
 	$(CC) $(flags) main.o -o $(exe) -L. -lgrafo -Wl,-rpath=.
-
-$(lib): graph.o adj_list.o node.o
-	$(CC) $(flags) -shared graph.o adj_list.o node.o -o $(lib)
-
+	
 main.o: main.cpp
 	$(CC) $(flags) -fPIC -c main.cpp -o main.o
 
@@ -29,6 +40,6 @@ run: $(exe)
 again: clean $(exe)
 
 clean:
-	del $(exe).exe *.o *.dll 
+	del $(exe).exe *.o *.dll *.pyd *.cxx 
 #rm for mac
 #del for windows
