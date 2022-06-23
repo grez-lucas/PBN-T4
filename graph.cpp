@@ -1,5 +1,6 @@
 #include "graph.h"
 #include <iostream>
+#include<list>
 
 Graph::Graph()
 {
@@ -37,7 +38,7 @@ int Graph::add_nodo(){  //Gotta play with realloc memory
   return id;
 }
 
-void Graph::addEdge(int src, int dest)
+void Graph::add_arco(int src, int dest)
 {
   Node *newNode = newAdjListNode(dest);
   newNode->next = AdjacencyLists[src].node;
@@ -56,16 +57,43 @@ bool Graph::hay_arco(int a, int b){
     return false;
 }
 
-bool Graph::hay_camino(int a, int b){
-  if (hay_arco(a, b))
+bool Graph::hay_camino(int a, int b)
+{
+  //BFS Algorithm
+  if (a == b) 
     return true;
-  for (int v = 0; v < this->nodeNum; ++v)
-  {
-    if (hay_arco(a, v) && hay_arco(b, v))
-      return true;
+
+  //Mark all nodes as unvisited
+  bool *visited = new bool[this->nodeNum];
+  for(int i = 0; i < this->nodeNum; ++i)
+    visited[i] = false;
+  
+  list<int> queue;
+
+  // Mark first node as visited
+  visited[a] = true;
+  // Add to queue all adjacent nodes of the first node
+  Node *currentNode = AdjacencyLists[a].node;
+  while(currentNode){
+    queue.push_back(currentNode->dest);
+    currentNode = currentNode->next;
   }
-  return false;
-}
+
+  //Begin to loop over queue, checking if the node has been visited or not
+  while(!queue.empty()){
+    currentNode = AdjacencyLists[queue.front()].node;
+    visited[queue.front()] = true;
+    //Put adjacent nodes in queue if they're not visited
+    while(currentNode){
+      if(!visited[currentNode->dest])
+        queue.push_back(currentNode->dest);
+      currentNode = currentNode->next;
+    }
+    //Remove the first element of the queue
+    queue.pop_front();
+  }
+  return visited[b];
+  }
 
 void Graph::printGraph()
 {

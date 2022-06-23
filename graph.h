@@ -1,5 +1,4 @@
-#include<list>
-#include<vector>
+#pragma once
 #include "adj_list.h"
 //It is faster to use adjacency lists for graphs having less number of edges.
 using namespace std;
@@ -13,7 +12,7 @@ public:
     Graph(int);
     Node* newAdjListNode(int);
     int add_nodo();
-    void addEdge(int, int);
+    void add_arco(int, int);
     bool hay_arco(int, int);
     bool hay_camino(int, int);
     void printGraph();

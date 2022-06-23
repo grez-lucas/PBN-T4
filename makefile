@@ -17,8 +17,8 @@ grafo_wrap.cxx: grafo.i graph.h adj_list.h node.h
 
 
 
-$(exe): main.o $(lib)
-	$(CC) $(flags) main.o -o $(exe) -L. -lgrafo -Wl,-rpath=.
+$(exe): main.o graph.o adj_list.o node.o
+	$(CC) $(flags) main.o graph.o adj_list.o node.o -o $(exe)
 	
 main.o: main.cpp
 	$(CC) $(flags) -fPIC -c main.cpp -o main.o

@@ -101,8 +101,8 @@ class Graph(object):
     def add_nodo(self):
         return _grafo.Graph_add_nodo(self)
 
-    def addEdge(self, arg2, arg3):
-        return _grafo.Graph_addEdge(self, arg2, arg3)
+    def add_arco(self, arg2, arg3):
+        return _grafo.Graph_add_arco(self, arg2, arg3)
 
     def hay_arco(self, arg2, arg3):
         return _grafo.Graph_hay_arco(self, arg2, arg3)

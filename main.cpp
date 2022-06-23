@@ -2,23 +2,23 @@
 #include<iostream>
 
 int main(){
-    Graph graph1;
-    cout << graph1.AdjacencyLists[0].node << endl;
+    Graph g1;
+    cout << g1.AdjacencyLists[0].node << endl;
 
-    graph1.add_nodo();
-    graph1.add_nodo();
-    graph1.add_nodo();
+    g1.add_nodo();
+    g1.add_nodo();
+    g1.add_nodo();
+    g1.add_nodo();
+    g1.add_nodo();
+    g1.add_nodo();
 
-    graph1.addEdge(0, 1);
-    // graph1.addEdge(0, 4);
-    graph1.addEdge(1, 2);
-    //graph1.addEdge(1, 3);
-    // graph1.addEdge(1, 4);
-    // graph1.addEdge(2, 3);
-    // graph1.addEdge(3, 4);
+    g1.add_arco(0, 1);
+    g1.add_arco(1, 2);
+    g1.add_arco(2, 3);
+    g1.add_arco(3, 4);
  
     // print the adjacency list representation of the above graph
-    graph1.printGraph();
-    cout << graph1.hay_camino(0, 2) << endl;
+    g1.printGraph();
+    cout << g1.hay_camino(4, 0) << endl;
     return 0;
 }
