@@ -1,5 +1,5 @@
 CC=g++
-flags=
+flags=-std=c++11 -Wall -Wextra -Wundef -Werror -Wuninitialized -Winit-self
 exe=grafo
 lib=_grafo.pyd
 
