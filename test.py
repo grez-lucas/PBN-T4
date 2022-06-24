@@ -1,10 +1,16 @@
-import grafo as g
-
-g1 = g.Graph(6)
-
-g1.add_arco(0, 1)
-g1.add_arco(1, 2)
-g1.add_arco(3, 4)
-
-g1.printGraph()
-print (f'Entre los nodos 0 y 4 hay camino: {g1.hay_camino(0,4)}' )
+from grafo import *
+# Funcion para construir frases dependiendo de una
+# variable booleana .
+# Transforma un false en "no ". Si es true , retorna un
+# string vacio .
+def castellano(booleano):
+    if not booleano:
+        return "no "
+    return ""
+g = Graph(3)
+g.add_arco(1 ,2)
+g.add_nodo()
+g.add_arco(2 ,3)
+print (castellano(g.hay_arco(2 ,1) ) + " hay arco entre los nodos 2 y 1")
+print (castellano( g.hay_camino(1 ,3) ) + " hay camino entre los nodos 1 y 3")
+print (castellano( g.hay_camino(0 ,3) ) + " hay camino entre los nodos 0 y 3")

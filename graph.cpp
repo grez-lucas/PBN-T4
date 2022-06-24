@@ -12,7 +12,7 @@ Graph::Graph()
 Graph::Graph(int size)
 {
   this->nodeNum = size;
-  AdjacencyLists = new AdjacencyList[size];
+  AdjacencyLists = new AdjacencyList[size*2];
   for (int i = 0; i < size; ++i)
     AdjacencyLists[i].node = NULL;
 }
